@@ -86,9 +86,9 @@ function ClearData() {
 
 function DisplayData() {
     let table = '';
-    for (let i = 1; i < dataproduct.length; i++) {
+    for (let i = 0; i < dataproduct.length; i++) {
         table += `   <tr>
-                            <td>${i}</td>
+                            <td>${i+1}</td>
                             <td>${dataproduct[i].title}</td>
                             <td>${dataproduct[i].price}</td>
                             <td>${dataproduct[i].taxes}</td>
@@ -99,18 +99,20 @@ function DisplayData() {
                             <td><button onclick="DeleteProduct(${i})" id="delete">Delete</button></td>
                         </tr>
         `;
-        document.getElementById('tbody').innerHTML = table;
+
 
     }
+    document.getElementById('tbody').innerHTML = table;
 
 
 };
 
 function DeleteProduct(i) {
     dataproduct.splice(i, 1);
-    localStorage.product = JSON.stringify(dataproduct);
+    //localStorage.product = JSON.stringify(dataproduct);
+    localStorage.setItem('product', JSON.stringify(dataproduct));
     DisplayData();
-    console.log(i);
+
 
 };
 
